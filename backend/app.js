@@ -5,7 +5,9 @@ const io = require('socket.io')(server, {
     serveClient: false
 });
 
-server.listen(8080);
+//io.origins(["https://www.peersterlist.abate.io", "http://localhost:3000"])
+
+server.listen(8042);
 
 nodes_map = {};
 id = 0;
@@ -13,6 +15,7 @@ nodes_array = [];
 
 io.on('connection', (socket) =>
     {
+        console.log("New socket with id:" + id);
         socket.emit("node-number", id);
         id++;
 
@@ -21,13 +24,13 @@ io.on('connection', (socket) =>
         });
         socket.on("delete", (i) => {
             if(i >= 0){
+                console.log("Deleted node: " + i);
                 delete nodes_map[i];
                 nodes_array = Array.from(Object.values(nodes_map));
                 io.emit('list', nodes_array);
             }
         });
         socket.on("report", (i) => {
-            console.log(i);
             if(i in nodes_map){
                 nodes_map[i].reports++;
                 if(nodes_map[i].reports >= 5){
@@ -40,6 +43,7 @@ io.on('connection', (socket) =>
         });
         socket.on("add", ([obj, nodeId]) =>{
             if('ipAndPort' in obj && 'version' in obj){
+                console.log("New Node with id:" + nodeId + " and ip : " + obj.ipAndPort);
                 obj['reports'] = 0;
                 obj['id'] = nodeId;
                 nodes_map[nodeId] = obj;

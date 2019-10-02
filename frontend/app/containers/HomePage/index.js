@@ -23,8 +23,8 @@ const useStyles = makeStyles({
 export default function HomePage() {
   const classes = useStyles();
 
-  const socket = io('ws://localhost:8080', {
-    transports: ['websocket'],
+  const socket = io('wss://www.peersterlist.abate.io', {
+    //transports: ['websocket'],
     path: '/peerster-list',
   });
 
@@ -53,7 +53,6 @@ export default function HomePage() {
     if (re.test(ipAndPort)) {
       setState(prev => ({ ...prev, disableAdd: true }));
       socket.emit('add', [{ ipAndPort, version }, state.nodeNumber]);
-    } else {
     }
   };
 
