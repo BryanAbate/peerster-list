@@ -6,10 +6,12 @@
 This project aims at making a website with backend server for students of the course CS-438 at EPFL ("Decentralized systems engineering" by Bryan Ford) and allow them to reference the ip of their peerster nodes so that it is easier for other students to find Nodes to connect to and test their implementation.
 
 ## TODO and known issues
+* TODO: Filter for versions
+
 * Issue: management of ids is in a bad state because connection of a socket make it generates a new id more than once per client.
 
 ## Technologies
-Main technologies used are: JS, React and socket.io.
+Main technologies used are: JS, React, socket.io and Node.js.
 
 ## Issues ?
 
