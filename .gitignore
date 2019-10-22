@@ -293,3 +293,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,react,linux,macos,windows,webstorm,code,vim
+
+# build folder
+frontend/build/

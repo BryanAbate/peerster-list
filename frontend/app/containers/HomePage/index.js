@@ -13,10 +13,19 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core';
 import NodeCard from '../../components/NodeCard';
 import NodeAdder from '../../components/NodeAdder';
+import ghLogo from '../../images/GitHub-Mark-32px.png';
 
 const useStyles = makeStyles({
   progress: {
     marginTop: 100,
+  },
+  appView: {
+    height: '95vh',
+    overflowY: 'scroll',
+  },
+  container: {},
+  imgGh: {
+    textAlign: 'center',
   },
 });
 
@@ -24,7 +33,7 @@ export default function HomePage() {
   const classes = useStyles();
 
   const socket = io('wss://www.peersterlist.abate.io', {
-    //transports: ['websocket'],
+    // transports: ['websocket'],
     path: '/peerster-list',
   });
 
@@ -66,28 +75,35 @@ export default function HomePage() {
   };
 
   return (
-    <Container>
-      <NodeAdder
-        disabled={state.disableAdd}
-        onSubmit={addNode}
-        onDelete={deleteNode}
-      />
-      {state.loading ? (
-        <LinearProgress className={classes.progress} />
-      ) : (
-        <div>
-          {state.nodesList.map(n => (
-            <NodeCard
-              key={n.id}
-              id={n.id}
-              ipAndPort={n.ipAndPort}
-              version={n.version}
-              reports={n.reports}
-              onReport={reportNode}
-            />
-          ))}
-        </div>
-      )}
+    <Container className={classes.container}>
+      <div className={classes.appView}>
+        <NodeAdder
+          disabled={state.disableAdd}
+          onSubmit={addNode}
+          onDelete={deleteNode}
+        />
+        {state.loading ? (
+          <LinearProgress className={classes.progress} />
+        ) : (
+          <div>
+            {state.nodesList.map(n => (
+              <NodeCard
+                key={n.id}
+                id={n.id}
+                ipAndPort={n.ipAndPort}
+                version={n.version}
+                reports={n.reports}
+                onReport={reportNode}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+      <div className={classes.imgGh}>
+        <a href="https://github.com/BryanAbate/peerster-list" target="_blank">
+          <img src={ghLogo} alt="GitHub" />
+        </a>
+      </div>
     </Container>
   );
 }
