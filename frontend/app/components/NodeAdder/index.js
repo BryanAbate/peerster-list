@@ -37,7 +37,12 @@ const useStyles = makeStyles(theme => ({
 function NodeAdder(props) {
   const classes = useStyles();
 
-  const versions = ['hw 1 - part 1', 'hw 1 - part 2'];
+  const versions = [
+    'hw 1 - part 1',
+    'hw 1 - part 2',
+    'Private rumors',
+    'File sharing',
+  ];
 
   const [values, setValues] = React.useState({
     ipAndPort: '',
