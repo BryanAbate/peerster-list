@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     width: 200,
   },
   versionSelect: {
-    minWidth: 150,
+    minWidth: 175,
   },
   button: {
     marginLeft: theme.spacing(1),
@@ -42,6 +42,10 @@ function NodeAdder(props) {
     'hw 1 - part 2',
     'Private rumors',
     'File sharing',
+    'hw 3 - part 1',
+    'hw 3 - part 2 - ex 2',
+    'hw 3 - part 2 - ex 3',
+    'hw 3 - part 2 - ex 4',
   ];
 
   const [values, setValues] = React.useState({
